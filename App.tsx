@@ -1,22 +1,18 @@
 /* eslint-disable prettier/prettier */
 import React, {useState } from 'react';
-import {
-  Alert,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Alert, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+
 import GoButton from './src/components/GoButton';
+import InputText from './src/components/InputText/indexText';
+import InputNumeric from './src/components/InputText/indexNumeric';
 
 const App = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
 
   let sum = 0;
-  var ageArray = age.toString();
+  let sum2 = 0;
+  var newTwo = 0;
 
   const capturar = () => {
 
@@ -72,29 +68,31 @@ const App = () => {
           }
       }
       else {
-        console.log(age);
+        var ageTwoArray = age.toString();
         for (let i = 0; i < 2; i++){
-          var numArray = ageArray[i];
-          console.log(numArray);
+          var numArray = ageTwoArray[i];
+          //console.log('* ' + numArray);
           var num = +numArray;
           sum += num;
         }
+
         if (getLength(sum) === 2){
-          var sum2 = 0;
           do {
+            console.log('suma: ' + sum);
             var ageTwoArray = sum.toString();
-              for (let i = 0; i < 2; i++){
-                var numArray = ageTwoArray[i];
-                console.log(numArray);
-                var num = +numArray;
-                sum2 += num;
+            for (let i = 0; i < 2; i++){
+              var numArray = ageTwoArray[i];
+              //console.log('| ' + numArray);
+              var num = +numArray;
+              sum2 += num;
             }
-            sum = sum2;
+            newTwo = sum2;
+            console.log('new: ' + newTwo);
             sum2 = 0;
-          } while (sum2 > 9);
+          } while (newTwo > 9);
           Alert.alert(
             'Hi ' + name,
-            'Your lucky number is ' + sum, [
+            'Your lucky number is ' + newTwo, [
               {
                 text: 'OK',
                 onPress: () => console.log('OK Pressed'),
@@ -113,6 +111,7 @@ const App = () => {
             ]
           );
         }
+        sum = 0;
       }
     }
   };
@@ -121,22 +120,10 @@ const App = () => {
     <ScrollView style={styles.Body}>
       <View style={styles.Container}>
         <Text style={styles.Text}>Lucky Number</Text>
+        <Image style={styles.Image} source={require('./src/resources/magic.jpg')} />
         <View>
-          <Image
-            style={styles.Image} source={require('./src/resources/magic.jpg')} />
-        </View>
-        <View>
-          <TextInput
-            style={styles.Input}
-            placeholder="Enter your name"
-            onChangeText={(valName) => setName(valName)}
-          />
-          <TextInput
-            style={styles.Input}
-            keyboardType="numeric"
-            placeholder="Enter your age"
-            onChangeText={(valAge) => setAge(valAge)}
-          />
+          <InputText onChange={(valName) => setName(valName)} />
+          <InputNumeric onChange={(valAge) => setAge(valAge)} />
           <GoButton onClick={capturar} />
         </View>
       </View>
@@ -162,6 +149,8 @@ const styles = StyleSheet.create({
   Text: {
     marginTop: 50,
     fontSize: 30,
+    fontWeight: 'bold',
+    fontFamily: 'monospace',
     letterSpacing: 3,
     color: '#000',
   },
@@ -169,16 +158,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: 200,
     height: 200,
-  },
-  Input: {
-    borderBottomWidth: 1,
-    borderColor: '#000',
-    padding: 8,
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'monospace',
-    marginTop: 40,
-    width: 330,
   },
 });
 
