@@ -13,7 +13,7 @@ const App = () => {
   let sum2 = 0;
   var newTwo = 0;
 
-  const capturar = () => {
+  const capture = () => {
     if (age <= 0 || age >= 100 || name === '') {
       console.log('Type a valid name/age');
       Alert.alert('ERROR', 'Type a valid name/age', [
@@ -83,7 +83,7 @@ const App = () => {
             },
           ]);
         } else {
-          Alert.alert( 'Hi ' + name, 'Your lucky number is ' + sum, [
+          Alert.alert('Hi ' + name, 'Your lucky number is ' + sum, [
             {
               text: 'OK',
               onPress: () => console.log('OK Pressed'),
@@ -111,7 +111,7 @@ const App = () => {
         <View>
           <InputText onChange={valName => setName(valName)} />
           <InputNumeric onChange={valAge => setAge(valAge)} />
-          <GoButton onClick={capturar} />
+          <GoButton onClick={capture} />
         </View>
       </View>
     </ScrollView>
