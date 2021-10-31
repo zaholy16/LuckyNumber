@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import React, {useState } from 'react';
+import React, {useState} from 'react';
 import {Alert, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import GoButton from './src/components/GoButton';
@@ -15,126 +14,108 @@ const App = () => {
   var newTwo = 0;
 
   const capturar = () => {
-
     if (age <= 0 || age >= 100 || name === '') {
       console.log('Type a valid name/age');
-      Alert.alert(
-        'ERROR',
-        'Type a valid name/age', [
-          {
-            text: 'OK',
-            onPress: () => console.log('OK Pressed'),
-          },
-        ]
-      );
+      Alert.alert('ERROR', 'Type a valid name/age', [
+        {
+          text: 'OK',
+          onPress: () => console.log('OK Pressed'),
+        },
+      ]);
       return;
-    }
-    else {
-      if (getLength(age) === 1){
+    } else {
+      if (getLength(age) === 1) {
         let newAge = age * 7;
-        if (getLength(newAge) === 1){
-          Alert.alert(
-            'Hi ' + name,
-            'Your lucky number is ' + newAge, [
-              {
-                text: 'OK',
-                onPress: () => console.log('OK Pressed'),
-              },
-            ]
-          );
+        if (getLength(newAge) === 1) {
+          Alert.alert('Hi ' + name, 'Your lucky number is ' + newAge, [
+            {
+              text: 'OK',
+              onPress: () => console.log('OK Pressed'),
+            },
+          ]);
+        } else {
+          do {
+            var newAgeArray = newAge.toString();
+            console.log(newAge);
+            for (let i = 0; i < 2; i++) {
+              var numArray = newAgeArray[i];
+              //console.log(numArray);
+              var num = +numArray;
+              sum += num;
+            }
+            newAge = sum;
+            sum = 0;
+          } while (newAge > 9);
+          Alert.alert('Hi ' + name, 'Your lucky number is ' + newAge, [
+            {
+              text: 'OK',
+              onPress: () => console.log('OK Pressed'),
+            },
+          ]);
         }
-        else {
-            do {
-              var newAgeArray = newAge.toString();
-              console.log(newAge);
-                for (let i = 0; i < 2; i++){
-                  var numArray = newAgeArray[i];
-                  console.log(numArray);
-                  var num = +numArray;
-                  sum += num;
-              }
-              newAge = sum;
-              sum = 0;
-            } while (newAge > 9);
-            Alert.alert(
-              'Hi ' + name,
-              'Your lucky number is ' + newAge, [
-                {
-                  text: 'OK',
-                  onPress: () => console.log('OK Pressed'),
-                },
-              ]
-            );
-          }
-      }
-      else {
+      } else {
         var ageTwoArray = age.toString();
-        for (let i = 0; i < 2; i++){
+        for (let i = 0; i < 2; i++) {
           var numArray = ageTwoArray[i];
           //console.log('* ' + numArray);
           var num = +numArray;
           sum += num;
         }
 
-        if (getLength(sum) === 2){
+        if (getLength(sum) === 2) {
           do {
-            console.log('suma: ' + sum);
+            //console.log('suma: ' + sum);
             var ageTwoArray = sum.toString();
-            for (let i = 0; i < 2; i++){
+            for (let i = 0; i < 2; i++) {
               var numArray = ageTwoArray[i];
               //console.log('| ' + numArray);
               var num = +numArray;
               sum2 += num;
             }
             newTwo = sum2;
-            console.log('new: ' + newTwo);
+            //console.log('new: ' + newTwo);
             sum2 = 0;
           } while (newTwo > 9);
-          Alert.alert(
-            'Hi ' + name,
-            'Your lucky number is ' + newTwo, [
-              {
-                text: 'OK',
-                onPress: () => console.log('OK Pressed'),
-              },
-            ]
-          );
-        }
-        else {
-          Alert.alert(
-            'Hi ' + name,
-            'Your lucky number is ' + sum, [
-              {
-                text: 'OK',
-                onPress: () => console.log('OK Pressed'),
-              },
-            ]
-          );
+          Alert.alert('Hi ' + name, 'Your lucky number is ' + newTwo, [
+            {
+              text: 'OK',
+              onPress: () => console.log('OK Pressed'),
+            },
+          ]);
+        } else {
+          Alert.alert( 'Hi ' + name, 'Your lucky number is ' + sum, [
+            {
+              text: 'OK',
+              onPress: () => console.log('OK Pressed'),
+            },
+          ]);
         }
         sum = 0;
       }
     }
   };
 
+  //function obtener cantidad digitos
+  function getLength(numberDigit: Number) {
+    return numberDigit.toString().length;
+  }
+
   return (
     <ScrollView style={styles.Body}>
       <View style={styles.Container}>
         <Text style={styles.Text}>Lucky Number</Text>
-        <Image style={styles.Image} source={require('./src/resources/magic.jpg')} />
+        <Image
+          style={styles.Image}
+          source={require('./src/resources/magic.jpg')}
+        />
         <View>
-          <InputText onChange={(valName) => setName(valName)} />
-          <InputNumeric onChange={(valAge) => setAge(valAge)} />
+          <InputText onChange={valName => setName(valName)} />
+          <InputNumeric onChange={valAge => setAge(valAge)} />
           <GoButton onClick={capturar} />
         </View>
       </View>
     </ScrollView>
   );
-
-  //function obtener cantidad digitos
-  function getLength(numberDigit: Number)  {
-    return numberDigit.toString().length;
-  }
-
 };
 
 const styles = StyleSheet.create({
@@ -162,4 +143,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
