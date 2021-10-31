@@ -1,9 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {Alert, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-
 import GoButton from './src/components/GoButton';
-import InputText from './src/components/InputText/indexText';
-import InputNumeric from './src/components/InputText/indexNumeric';
+import Input from './src/components/InputText/index';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -39,7 +38,6 @@ const App = () => {
             console.log(newAge);
             for (let i = 0; i < 2; i++) {
               var numArray = newAgeArray[i];
-              //console.log(numArray);
               var num = +numArray;
               sum += num;
             }
@@ -57,23 +55,19 @@ const App = () => {
         var ageTwoArray = age.toString();
         for (let i = 0; i < 2; i++) {
           var numArray = ageTwoArray[i];
-          //console.log('* ' + numArray);
           var num = +numArray;
           sum += num;
         }
 
         if (getLength(sum) === 2) {
           do {
-            //console.log('suma: ' + sum);
             var ageTwoArray = sum.toString();
             for (let i = 0; i < 2; i++) {
               var numArray = ageTwoArray[i];
-              //console.log('| ' + numArray);
               var num = +numArray;
               sum2 += num;
             }
             newTwo = sum2;
-            //console.log('new: ' + newTwo);
             sum2 = 0;
           } while (newTwo > 9);
           Alert.alert('Hi ' + name, 'Your lucky number is ' + newTwo, [
@@ -104,13 +98,15 @@ const App = () => {
     <ScrollView style={styles.Body}>
       <View style={styles.Container}>
         <Text style={styles.Text}>Lucky Number</Text>
-        <Image
-          style={styles.Image}
-          source={require('./src/resources/magic.jpg')}
+        <Image style={styles.Image} source={require('./src/resources/magic.jpg')}
         />
         <View>
-          <InputText onChange={valName => setName(valName)} />
-          <InputNumeric onChange={valAge => setAge(valAge)} />
+          <Input
+            onChange={valName => setName(valName)} type="default" placeHolder={'Enter your name'}
+          />
+          <Input
+            onChange={valAge => setAge(valAge)} type="numeric" placeHolder={'Enter your age'}
+          />
           <GoButton onClick={capture} />
         </View>
       </View>
@@ -129,11 +125,16 @@ const styles = StyleSheet.create({
   },
   Text: {
     marginTop: 50,
+    padding: 10,
+    borderBottomWidth: 2,
+    borderTopWidth: 2,
+    marginBottom: 10,
+    borderColor: '#260D55',
     fontSize: 30,
     fontWeight: 'bold',
     fontFamily: 'monospace',
     letterSpacing: 3,
-    color: '#000',
+    color: '#4818A2',
   },
   Image: {
     marginTop: 20,

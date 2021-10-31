@@ -1,19 +1,21 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {KeyboardType, StyleSheet, TextInput} from 'react-native';
 
 interface Props {
-  onChange: () => void;
+  onChange: (valName: any, valAge: any) => void,
+  type: KeyboardType,
+  placeHolder: string,
 }
 
 const Component = (props: Props) => {
-    const {onChange} = props;
+    const {onChange, type, placeHolder} = props;
   return (
     <TextInput
         style={styles.Input}
-        keyboardType="numeric"
-        placeholder="Enter your age"
-        onChangeText={(onChange)} />
+        onChangeText={onChange}
+        keyboardType={type}
+        placeholder={placeHolder} />
   );
 };
 
