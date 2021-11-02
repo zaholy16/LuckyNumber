@@ -3,7 +3,7 @@ import React from 'react';
 import {KeyboardType, StyleSheet, TextInput} from 'react-native';
 
 interface Props {
-  onChange: (valName: any, valAge: any) => void,
+  onChange?: (valName: any, valAge: any) => void,
   type: KeyboardType,
   placeHolder: string,
 }
