@@ -17,13 +17,11 @@ const App = () => {
       <View style={styles.Container}>
         <Text style={styles.Text}>Lucky Number</Text>
         <Image style={styles.Image} source={require('./src/resources/magic.jpg')} />
-        <View>
-          <Input onChange={valName => setName(valName)} type="default" placeHolder={'Enter your name'} />
-          <Input onChange={valAge => setAge(valAge)} type="numeric" placeHolder={'Enter your age'} />
-          <TouchableOpacity style={styles.Button} onPress={onClick}>
-            <Text style={styles.ButtonText}>Press me</Text>
-          </TouchableOpacity>
-        </View>
+        <Input onChange={valName => setName(valName)} type="default" placeHolder={'Enter your name'} />
+        <Input onChange={valAge => setAge(valAge)} type="numeric" placeHolder={'Enter your age'} />
+        <TouchableOpacity style={styles.Button} onPress={onClick}>
+          <Text style={styles.ButtonText}>Press me</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -32,27 +30,25 @@ const App = () => {
 const styles = StyleSheet.create({
   Body: {
     backgroundColor: '#DBD4EC',
+    height: '100%',
+    display: 'flex',
   },
   Container: {
     alignItems: 'center',
-    display: 'flex',
-    height: '100%',
   },
   Text: {
     marginTop: 50,
     padding: 10,
     borderBottomWidth: 2,
     borderTopWidth: 2,
-    marginBottom: 10,
-    borderColor: '#260D55',
+    color: '#4818A2',
     fontSize: 30,
     fontWeight: 'bold',
     fontFamily: 'monospace',
     letterSpacing: 3,
-    color: '#4818A2',
   },
   Image: {
-    marginTop: 20,
+    marginTop: 30,
     width: 200,
     height: 200,
   },
@@ -64,10 +60,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   ButtonText: {
-      color: '#fff',
-      fontSize: 22,
-      textAlign: 'center',
-      fontWeight: '500',
+    color: '#fff',
+    fontSize: 22,
+    textAlign: 'center',
   },
 });
 
